@@ -2,7 +2,7 @@ name: html CI
 
 on:
   push:
-    branches: [ TESTING ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -19,5 +19,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRETE_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: site on s3 bucket
+        run: aws s3 sync . s3://madan001011 --delete
       - name: site on s3 bucket
         run: aws s3 sync . s3://madan001011 --delete
